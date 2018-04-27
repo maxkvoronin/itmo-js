@@ -1,0 +1,29 @@
+body {
+    background: beige;
+    position: relative;
+}
+
+
+button {
+    color: white;
+    text-transform: uppercase;
+    background-color: #a2cf8e;
+    border-radius: 20px;
+    border: 0;
+    padding: 50px 18px;
+    text-align: center;
+    overflow: hidden;
+    font-size: 0.7rem;
+    width: 132px;
+}
+
+button:hover {
+    cursor: pointer;
+    background:#fff;
+    box-shadow:0 2px 10px 5px #97B1BF;
+    color:#000;
+}
+
+button:focus {
+    border: none;
+}
