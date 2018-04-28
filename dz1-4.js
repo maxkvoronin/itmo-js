@@ -17,7 +17,7 @@ var namesOfRating=["плохо","неудовлетворительно","удо
 
 getNumInRange15();
 
-if (inputNum!= null)
+if (inputNum!== null)
     alert(namesOfRating[inputNum-1]);
 else
     alert("Не хотите вводить. Ну и ладно");
