@@ -61,9 +61,8 @@ function isValidFormat(num) {
 
 //функция проверки кто меньший
 function whoIsLess() {
-    document.write('Вы ввели: ' + input1 + ', ' + input2 + ', ' + input3 + '<br>');
 
-    //ставнивать будем флоаты, т.к. могут ввести целые или вещественные числа
+    //ставнивать будем флоаты, т.к. в ТЗ однозначно не сказано целое или вещественное число приходит
     input1 = parseFloat(input1);
     input2 = parseFloat(input2);
     input3 = parseFloat(input3);
