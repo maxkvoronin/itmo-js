@@ -14,7 +14,7 @@
 
 var inputNum=0, numRank="", numSymbol="";
 
-GetNumInRange();
+getNumInRange();
 
 if (inputNum === 0) {
     alert(inputNum + ' - это нулевое число');
@@ -42,9 +42,9 @@ else { //если отмену нажмут
 
 
 //функция проверки введенного числа на диапозон
-function GetNumInRange() {
+function getNumInRange() {
     while (inputNum = prompt('Введите целое число в диапазоне от -999 до 999')) {
-        if (IsValidFormat(inputNum) ) { //если не каракули ввели
+        if (isValidFormat(inputNum) ) { //если не каракули ввели
             if (!isInt(inputNum)) { //если не целое число то опять предлагаем ввод
                 alert('Вы ввели не целое число');
                 continue;
@@ -61,7 +61,7 @@ function GetNumInRange() {
 }
 
 //проверка на ввод именно числа, а не '1212ыдлаоыв'
-function IsValidFormat(num) {
+function isValidFormat(num) {
     if (isNaN(+num)) { //Можно было использовать parseInt / parseFloat, но немного другую логику строить.
         alert("Неверный формат ввода. Введите целое число");
         return false;

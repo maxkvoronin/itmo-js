@@ -8,29 +8,29 @@
 
 var input1="", input2="", input3="";
 
-GetNum();
-WhoIsLess();
+getNum();
+whoIsLess();
 
 //функция которая запрашвает данные, пока пользователь не введет их правильно
-function GetNum() {
+function getNum() {
    while (input1 = prompt("Введите первое число")) {
-        if (IsValidFormat(input1))
+        if (isValidFormat(input1))
             break;
    }
 
    while (input2 = prompt("Введите второе число")) {
-        if (IsValidFormat(input2))
+        if (isValidFormat(input2))
             break;
    }
 
    while (input3 = prompt("Введите третье число")) {
-        if (IsValidFormat(input3))
+        if (isValidFormat(input3))
             break;
    }
 
    //если нажималась кнопка отмены или были введены одинаковые числа- начинаем заново
    if (isCancel() || isEqual())
-       GetNum();
+       getNum();
 }
 
 //функция проверки не нажималась ли кнопка отмены
@@ -51,7 +51,7 @@ function isEqual() {
 }
 
 //  проверка на ввод именно числа, а не '1212ыдлаоыв';
-function IsValidFormat(num) {
+function isValidFormat(num) {
     if (isNaN(+num)) { //Можно было использовать parseInt / parseFloat, но немного другую логику строить.
         alert("Неверный формат ввода. Введите целое и дробное число");
         return false;
@@ -60,7 +60,7 @@ function IsValidFormat(num) {
 }
 
 //функция проверки кто меньший
-function WhoIsLess() {
+function whoIsLess() {
     document.write('Вы ввели: ' + input1 + ', ' + input2 + ', ' + input3 + '<br>');
     if (input1 < input2 && input1 < input3) {
         document.write('Первое число: ' + input1 + ' - наименьшее');
