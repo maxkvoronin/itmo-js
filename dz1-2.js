@@ -12,21 +12,21 @@
     Maxim Voronin @ ITMO 04/2018
 */
 
-var inputNum=0, numRank="", numSymbol="";
+var inputNum="", numRank="", numSymbol="";
 
 getNumInRange();
 
-if (inputNum === 0) {
+if (inputNum === "0") {
     alert(inputNum + ' - это нулевое число');
 }
 else if (inputNum!== null) { //сравниваем с null т.к. ошибка будет если отмену нажмут
     var inputLth = inputNum.length;
 
-    if (inputNum < 0) {
+    if (parseInt(inputNum) < 0) {
         numSymbol = 'отрицательное ';
         inputLth--; //уменьшаем значение длины строки чтобы правильно разряднось посчитать
     }
-    if (inputNum > 0)
+    if (parseInt(inputNum) > 0)
         numSymbol = 'положительое ';
 
     if (inputLth === 3) numRank = 'трехзначное ';
@@ -49,7 +49,8 @@ function getNumInRange() {
                 alert('Вы ввели не целое число');
                 continue;
             }
-            if (inputNum >= -999 && inputNum <= 999) {
+
+            if (parseInt(inputNum) >= -999 && parseInt(inputNum) <= 999) {
                  break; //все ок выхдим
             }
             else {

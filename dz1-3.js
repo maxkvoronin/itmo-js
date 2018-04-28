@@ -10,7 +10,7 @@
 
     Maxim Voronin @ ITMO 04/2018
 */
-var inputNum=0;
+var inputNum="";
 var namesOfDigits=["ноль","один","два","три","четыре","пять","шесть","семь","восемь","девять"];
 
 getNumInRange09();
@@ -29,6 +29,9 @@ function getNumInRange09() {
                 alert('Вы ввели не целое число');
                 continue;
             }
+
+            inputNum = parseInt(inputNum); //всякий случай приводм к целому числу, хотя сравнение и без приведения сработает
+
             if (inputNum >= 0 && inputNum <= 9) {
                 break; //все ок выхдим
             }

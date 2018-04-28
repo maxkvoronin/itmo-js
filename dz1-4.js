@@ -12,7 +12,7 @@
 
     Maxim Voronin @ ITMO 04/2018
  */
-var inputNum=0;
+var inputNum="";
 var namesOfRating=["плохо","неудовлетворительно","удовлетворительно","хорошо","отлично"];
 
 getNumInRange15();
@@ -30,6 +30,9 @@ function getNumInRange15() {
                 alert('Вы ввели не целое число');
                 continue;
             }
+
+            inputNum = parseInt(inputNum); //всякий случай приводм к целому числу, хотя сравнение и без приведения сработает
+
             if (inputNum > 0 && inputNum <= 5) {
                 break; //все ок выхдим
             }

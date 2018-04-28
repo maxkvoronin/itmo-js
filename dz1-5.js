@@ -37,6 +37,7 @@ function getNum() {
 
 //Возвращает true если из трех строк с цеолыми чиселами есть пара совпадающих
 function isTheSamePair(numString1, numString2, numString3) {
+
     return  numString1 === numString2 ||
             numString2 === numString3 ||
             numString3 === numString1;

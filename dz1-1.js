@@ -62,6 +62,12 @@ function isValidFormat(num) {
 //функция проверки кто меньший
 function whoIsLess() {
     document.write('Вы ввели: ' + input1 + ', ' + input2 + ', ' + input3 + '<br>');
+
+    //ставнивать будем флоаты, т.к. могут ввести целые или вещественные числа
+    input1 = parseFloat(input1);
+    input2 = parseFloat(input2);
+    input3 = parseFloat(input3);
+
     if (input1 < input2 && input1 < input3) {
         document.write('Первое число: ' + input1 + ' - наименьшее');
     } else if (input2 < input1 && input2 < input3) {
@@ -70,3 +76,4 @@ function whoIsLess() {
         document.write('Третье число: ' + input3 + ' - наименьшее');
     }
 }
+
