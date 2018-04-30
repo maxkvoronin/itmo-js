@@ -9,8 +9,9 @@
     Maxim Voronin @ ITMO 04/2018
 */
 
-
-//distributeVariables(1,2);
+//var arg1 = 100;
+//var arg2 = 50;
+//distributeVariables(arg1,arg2);
 
 function distributeVariables(x, y) {
     var maxValue;
