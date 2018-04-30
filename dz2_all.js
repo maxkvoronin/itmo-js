@@ -65,11 +65,13 @@ function isRightTriangle(Xa, Ya, Za, Xb, Yb, Zb, Xc, Yc, Zc) {
         if (AB === BC + CA) {
             return true;
         }
-    } else if (BC > AB && BC > CA) {
+    }
+    if (BC > AB && BC > CA) {
         if (BC === AB + CA) {
             return true;
         }
-    } else {
+    }
+    if (CA > AB && CA > BC) {
         if (CA === AB + BC) {
             return true;
         }
@@ -155,7 +157,7 @@ function getLengthOfPiece(pieceLength, unitLength) {
     3) 'Сел в озере березов лес' – это строка палиндром
  */
 
-console.log(isPolindrom('Сел в озере березов лес'));
+//console.log(isPolindrom('Сел в озере березов лес'));
 
 function isPolindrom(str) {
     str = str.toLowerCase();
