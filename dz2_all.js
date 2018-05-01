@@ -9,19 +9,18 @@
     Maxim Voronin @ ITMO 04/2018
 */
 
-//var arg1 = 100;
-//var arg2 = 50;
-//distributeVariables(arg1,arg2);
+var x = 100, y = 50;
 
-function distributeVariables(x, y) {
-    var maxValue;
+//console.log("step1: \n\tX is " + x + "\n\tY is " + y);
 
-    if (x > y) {
-        maxValue = x;
-        x = y;
-        y = maxValue;
-    }
+if (x > y) {
+    var maxValue = x;
+    x = y;
+    y = maxValue;
 }
+
+//console.log("step2: \n\tX is " + x + "\n\tY is " + y);
+
 
 /**
  * JS
@@ -35,44 +34,44 @@ function distributeVariables(x, y) {
 
 //(console.isRightTriangle(3, 3, 0, 3, 10, 0, 15, 3, 0));
 
-function isRightTriangle(Xa, Ya, Za, Xb, Yb, Zb, Xc, Yc, Zc) {
+function isRightTriangle(xA, yA, zA, xB, yB, zB, xC, yC, zC) {
     /**Теорема Пифогора работает для n-мерных пространств
      * 1. Проверяем что длины ненулевые
      * 2. Находим больший квадрат длины и для него проверяем что он
      * равен сумме квадратов друих длинн.
-     * AB, BC, CA - суммы квадратов длинн
+     * ab, bc, ca - суммы квадратов длинн
      */
 
     /*
     * Если хотябы одна пара коордиант совпадает, значит одна длина стороны будет нулевая
     * */
-    if ((Xa === Xb && Ya === Yb && Za === Zb) ||
-        (Xa === Xc && Ya === Yc && Za === Zc) ||
-        (Xb === Xc && Yb === Yc && Zb === Zc)) {
+    if ((xA === xB && yA === yB && zA === zB) ||
+        (xA === xC && yA === yC && zA === zC) ||
+        (xB === xC && yB === yC && zB === zC)) {
         console.error("invalid triangle coordinates");
         return false;
     }
 
     /*
-    * AB, BC, CA - суммы квадратов длинн
+    * ab, bc, ca - суммы квадратов длинн
     * */
-    var AB = Math.pow( (Xb - Xa),2 ) + Math.pow( (Yb - Ya),2 ) + Math.pow( (Zb - Za),2 );
-    var BC = Math.pow( (Xc - Xb),2 ) + Math.pow( (Yc - Yb),2 ) + Math.pow( (Zc - Zb),2 );
-    var CA = Math.pow( (Xa - Xc),2 ) + Math.pow( (Ya - Yc),2 ) + Math.pow( (Za - Zc),2 );
+    var ab = Math.pow( (xB - xA),2 ) + Math.pow( (yB - yA),2 ) + Math.pow( (zB - zA),2 );
+    var bc = Math.pow( (xC - xB),2 ) + Math.pow( (yC - yB),2 ) + Math.pow( (zC - zB),2 );
+    var ca = Math.pow( (xA - xC),2 ) + Math.pow( (yA - yC),2 ) + Math.pow( (zA - zC),2 );
 
 
-    if (AB > BC && AB > CA) {
-        if (AB === BC + CA) {
+    if (ab > bc && ab > ca) {
+        if (ab === bc + ca) {
             return true;
         }
     }
-    if (BC > AB && BC > CA) {
-        if (BC === AB + CA) {
+    if (bc > ab && bc > ca) {
+        if (bc === ab + ca) {
             return true;
         }
     }
-    if (CA > AB && CA > BC) {
-        if (CA === AB + BC) {
+    if (ca > ab && ca > bc) {
+        if (ca === ab + bc) {
             return true;
         }
     }
@@ -214,27 +213,37 @@ function isHighYear(year) {
  то вывести: 'Все тарелки вымыты, моющее средство закончилось'
  */
 
-//startWash( parseInt( prompt("Кол-во тарелок:") ), parseFloat( prompt("Кол-во моющего средства:") ) );
+startWash( prompt("Кол-во тарелок:"), prompt("Кол-во моющего средства:") );
 
 function startWash(dirtyPlates, fairy) {
-    if (dirtyPlates === NaN || fairy === NaN || dirtyPlates < 0 || fairy < 0 ) {
+
+    dirtyPlates = parseInt(dirtyPlates);
+    fairy = parseFloat(fairy);
+
+    if (isNaN(dirtyPlates) || isNaN(fairy) || dirtyPlates < 0 || fairy < 0) {
         console.error("Invalid dirtyPlates or fairy value")
     }
+    else {
+        var totalPlates = dirtyPlates;
 
-    for (var clearPlates = 1; clearPlates <= dirtyPlates; clearPlates++) {
-        if (fairy === 0) {
-            break;
+        for (var clearPlates = 1; clearPlates <= totalPlates; clearPlates++) {
+            if (fairy <= 0) {
+                break;
+            }
+            fairy -= 0.5;
+            dirtyPlates--;
         }
-        fairy -= 0.5;
-        dirtyPlates--;
+
+        if (dirtyPlates === 0) {
+            if (fairy > 0) {
+                alert('Все тарелки вымыты. Осталось ' + fairy + ' ед. моющего средства');
+            }
+            if (fairy === 0) {
+                alert('Все тарелки вымыты, моющее средство закончилось');
+            }
+        } else {
+            alert('Моющее средство закончилось. Осталось ' + dirtyPlates + ' тарелок');
+        }
     }
-    if (dirtyPlates === 0 && fairy > 0)
-        alert('Все тарелки вымыты. Осталось ' + fairy + ' л. моющего средства');
 
-    if (dirtyPlates === 0 && fairy == 0)
-        alert('Все тарелки вымыты, моющее средство закончилось');
-
-    if (dirtyPlates > 0)
-        alert('Моющее средство закончилось. Осталось ' + dirtyPlates + ' тарелок');
 }
-
