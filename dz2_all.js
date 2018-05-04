@@ -14,7 +14,7 @@ var x = 100, y = 50;
 //console.log("step1: \n\tX is " + x + "\n\tY is " + y);
 
 if (x > y) {
-    var maxValue = x;
+    var maxValue = x; 
     x = y;
     y = maxValue;
 }
@@ -213,7 +213,7 @@ function isHighYear(year) {
  то вывести: 'Все тарелки вымыты, моющее средство закончилось'
  */
 
-startWash( prompt("Кол-во тарелок:"), prompt("Кол-во моющего средства:") );
+//startWash( prompt("Кол-во тарелок:"), prompt("Кол-во моющего средства:") );
 
 function startWash(dirtyPlates, fairy) {
 
