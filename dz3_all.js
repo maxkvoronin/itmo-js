@@ -70,7 +70,7 @@ function doubleChars(str, char) {
  * - содержит обязательно один из неалфавитных символов (например, !, $, #, %).
  */
 
-console.log(passCheck("q1wegg!7G"));
+console.log(passCheck("1wRegg12j!"));
 
 function passCheck(str) {
 
@@ -84,7 +84,7 @@ function passCheck(str) {
         return false;
     }
     
-    if (str.match(/(.*\d){2}/g)===null) {
+    if (str.match(/(.*\d){3}/g)===null) {
         console.log("пароль должен содержать более двух цифр");
         return false;
     }
