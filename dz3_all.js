@@ -68,12 +68,12 @@ function doubleChars (str, char) {
 function passCheck(str) {
 
     if (str.match(/.{9}/g)===null) {
-        console.log("пароль должен быть до девяти символов");
+        console.log("длина пароля должен быть от девяти символов");
         return false;
     }
     
     if (str.match(/[A-z]/g)===null) {
-        console.log("пароль должен состоять из английские буквы верхнего и нижнего регистра;");
+        console.log("пароль должен состоять из английских букв верхнего и нижнего регистра;");
         return false;
     }
     
