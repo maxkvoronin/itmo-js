@@ -5,15 +5,38 @@
  * 
  */
 
-//console.log(sumOfDigits("012345-3"));
+//console.log(summOfDigits("012345-3"));
 
-function sumOfDigits(str) {
+function summOfDigits(str) {
 
     var summ = 0;
     str.match(/-*\d/g).forEach( function(elem) {
         summ = summ + +elem;          
     });
     
+    return summ;
+}
+
+//console.log(summOfDigits_hardCode("0-1-23-445-5-09"));
+function summOfDigits_hardCode(str) {
+/**
+ * Хардкорная версия
+ * чаркод символа '0' - это  48
+ * чаркод символа '9' - это  57
+ * из этого можно сделать вывод что чаркод цифры больше на 48 чем значение цифры.
+
+ */
+    str = str.match(/-*\d/g).join('');
+ 
+    var summ = 0;
+    for (var i=0; i<str.length; i++) {
+        if (str.charCodeAt(i) === 45) {   
+            //чаркод '-' - это 45, значит следующий за ним цифру вычитаемж и перепрыгиваем      
+            summ = summ - str.charCodeAt(++i) + 48; 
+        }        
+        else
+            summ = summ + str.charCodeAt(i) - 48;
+    }
     return summ;
 }
 
