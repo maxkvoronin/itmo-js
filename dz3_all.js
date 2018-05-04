@@ -5,7 +5,7 @@
  * 
  */
 
-//console.log(summOfDigits("012345-3"));
+//console.log(summOfDigits("0-12345-3"));
 
 function summOfDigits(str) {
 
@@ -70,7 +70,7 @@ function doubleChars(str, char) {
  * - содержит обязательно один из неалфавитных символов (например, !, $, #, %).
  */
 
-//console.log(passCheck("q1weggg!7"));
+console.log(passCheck("q1wegg!7G"));
 
 function passCheck(str) {
 
@@ -79,7 +79,7 @@ function passCheck(str) {
         return false;
     }
     
-    if (str.match(/[A-z]/g)===null) {
+    if (str.match(/(?=.*[A-Z])(?=.*[a-z])/g)===null) {
         console.log("пароль должен состоять из английских букв верхнего и нижнего регистра;");
         return false;
     }
