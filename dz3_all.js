@@ -5,31 +5,15 @@
  * 
  */
 
-//console.log(sumOfDigits("012309jyhfjhf"));
-//console.log(sumOfDigits_v2("0201"));
+//console.log(sumOfDigits("012345-3"));
 
 function sumOfDigits(str) {
-    str = str.match(/\d/g).join('');
 
     var summ = 0;
-    for (var i=0; i<str.length; i++) {
-        summ = summ + str.charCodeAt(i) - 48;
-    }
-
-    return summ;
-}
-
-function sumOfDigits_v2(str) {
-    if (isNaN(+str)) {
-        console.error("string is not a Number");
-        return NaN;
-    }
-  
-    var summ = 0;
-    str.split('').forEach( function(elem) {
-        summ+=+elem; 
-    }); 
-
+    str.match(/-*\d/g).forEach( function(elem) {
+        summ = summ + +elem;          
+    });
+    
     return summ;
 }
 
@@ -42,7 +26,7 @@ function sumOfDigits_v2(str) {
 
 //console.log(doubleChars("Шла Саша по шоссе и сосала сушку", "с"));
 
-function doubleChars (str, char) {
+function doubleChars(str, char) {
     
     str = str.match(/./g); 
     
