@@ -70,7 +70,7 @@ function doubleChars(str, char) {
  * - содержит обязательно один из неалфавитных символов (например, !, $, #, %).
  */
 
-console.log(passCheck("1wRegg12j!"));
+console.log(passCheck("123kAkjg!i"));
 
 function passCheck(str) {
 
