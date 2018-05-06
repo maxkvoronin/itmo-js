@@ -18,16 +18,58 @@ arrC = [...arrB, ...arrA];
 //console.log(arrC);
 
 /** JS 
- * Урок 4. Задание 3.
+ * Урок 4. Задание 2.
  * Одномерным массивом задана доска 3 на 3 
  * var area = [ null, null, null, null, null, null, null, null, null ]
  * Необходимо сформировать игровое поле состоящее из квадратов для крестиков-ноликов  в HTML. 
  * При появлении в массиве 0-ля рисовать нолик , 1-цы крестик 
  *Пример:  [ 1, null, 0, null, 1, null, null, null, null ] на поле 2-а крестика, и 1-н нолик.
  
- UNDER CONSRUCTION
- 
  */
+
+//см. dz4_all.html
+function makeXO (arr) {
+    var str = '<table>';
+    var td = '';
+    
+    for(var i=0;i<9;i++) {
+        td = '<td>';
+        if (i === 1 || i === 7) {
+            td = '<td class="vertical">';
+        }
+        if (i === 3 || i === 5) {
+            td = '<td class="horizontal">';            
+        }
+        if (i === 4) {
+            td = '<td class="vertical horizontal">';     
+        }
+
+        if (i%3 === 0) {
+            str += "<tr>";
+        }
+        
+        if (arr[i] === 1) {
+            str += td + "X</td>";
+        }
+        
+        if (arr[i] === 0) {
+            str += td + "O</td>";
+        }
+        
+        if (arr[i] === null) {
+            str += td + "</td>";
+        }
+        
+        if (i === 2 || i === 5 || i===8) {
+            str+="</tr>";
+        }
+    } 
+    
+    return str + '</table>';        
+}
+    
+
+
 
 /** JS
  * Урок 4. Задание 3.
@@ -62,10 +104,10 @@ function deleteMinMax (arr) {
     return arrN;
 }
 
-/** JS
+/** JS     UNDER CONSRUCTION
  * Урок 4. Задание 4.
  * 4. Задан массив - [12,4,3,10,1,20]. 
  * Необходимо отсортировать его в порядке возрастания,  при этом не использовать готовый метод sort 
  * и методы разобранные на занятии. Снабдите комментариями каждую строку.
-    UNDER CONSRUCTION
+
  */
