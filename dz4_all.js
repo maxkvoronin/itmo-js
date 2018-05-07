@@ -76,12 +76,12 @@ function tictac (arr) {
  * Задан массив  - [12,4,3,10,1,20]. 
  * Удалить из него наименьшее и наибольшее значение.
  */
-//console.log(deleteMinMax([-12,-4,-3000,-10,-11,-200,-100]));
+console.log(deleteMinMax([-12,-4,-3000,-10,-11,-200,-100]));
 function deleteMinMax (arr) {
     var maxValue = arr[0];
     
     //ищем максимальный элемент
-    for (var i=0;i<arr.length;i++) {
+    for (var i=1;i<arr.length;i++) {
         if (arr[i] > maxValue)
             maxValue = arr[i];   
                  
@@ -111,7 +111,20 @@ function deleteMinMax (arr) {
  * и методы разобранные на занятии. Снабдите комментариями каждую строку.
  */
 
-console.log(sortGnomev2([-12,4,30,-10,-1,-20]));
+//console.log(sortGnomev2([-12,4,30,-10,-1,-20]));
+
+var start = window.performance.now();
+for (var i = 0; i<1000000; i++) {
+    sortGnomev2([-12,4,30,-10,-1,-20]);
+}
+var end = window.performance.now();
+
+console.log(end - start);
+
+for (var i = 0; i<1000000; i++) {
+    sortGnome([-12,4,30,-10,-1,-20]);
+}
+
 
 //без вложенного цикла
 function sortGnomev2(arr) {
@@ -123,9 +136,11 @@ function sortGnomev2(arr) {
             i++; // увеличиваем счетчик
         }
         else { // если предыдущий больше следующего
-            tmp = arr[i];      // перестановка 
-            arr[i] = arr[i - 1]; // перестановка
-            arr[i - 1] = tmp;  // перестановка
+            [arr[i],arr[i - 1]] = [arr[i - 1], arr[i]];
+            
+            //tmp = arr[i];      // перестановка 
+            //arr[i] = arr[i - 1]; // перестановка
+            //arr[i - 1] = tmp;  // перестановка
             i--; // идем в другую сторону
         }
     }
@@ -135,9 +150,12 @@ return arr;
 //console.log(sortGnome([-12,4,30,-10,-1,-20]));
 function sortGnome(arr) {
     var tmp; //временное хранилище  
-    for(var i=0;i<arr.length;i++) {  //цикл направление слева направо 
+    var i = 0;
+    var j = 0;
+    
+    for(i=0;i<arr.length;i++) {  //цикл направление слева направо 
         if(arr[i]>arr[i+1]) { //если текуций элемент больше следующего
-            for(var j=i+1;j>=0;j--) { //бежим в обратную сторону влево до начала
+            for(j=i+1;j>=0;j--) { //бежим в обратную сторону влево до начала
                 if(arr[j] < arr[j-1]) { //переставляем элементы так чтобы слева был наименьший               
                     tmp = arr[j];      //временное хранилище  
                     arr[j] = arr[j-1]; //сама перестановка
