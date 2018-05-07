@@ -27,8 +27,8 @@ arrC = [...arrB, ...arrA];
  
  */
 
-//см. dz4_all.html
-function makeXO (arr) {
+//см. dz4_2.html
+function tictac (arr) {
     var str = '<table>';
     var td = '';
     
@@ -77,8 +77,7 @@ function makeXO (arr) {
  * Удалить из него наименьшее и наибольшее значение.
  */
 
-
-//console.log(deleteMinMax([12,4,3,-10,11,200,-100]));
+//console.log(deleteMinMax([12,4,3000,-10,11,200,-100]));
 function deleteMinMax (arr) {
     var maxValue = 0;
     
@@ -98,16 +97,32 @@ function deleteMinMax (arr) {
 
     //удаляем минимальный и максимальный элемент из массива
     var arrN = arr.filter(element => {
-        return (element !== minValue && element !== maxValue);  
+        return element !== minValue && element !== maxValue;  
     });
 
     return arrN;
 }
 
-/** JS     UNDER CONSRUCTION
+/** JS 
  * Урок 4. Задание 4.
  * 4. Задан массив - [12,4,3,10,1,20]. 
  * Необходимо отсортировать его в порядке возрастания,  при этом не использовать готовый метод sort 
  * и методы разобранные на занятии. Снабдите комментариями каждую строку.
-
  */
+
+//console.log(sortGnome([12,4,3,10,1,20]));
+function sortGnome(arr) {
+    var k; //буфер
+    for(i=0;i<arr.length;i++) {  //цикл направление слева направо 
+        if(arr[i]>arr[i+1]) { //если текуций элемент больше следующего
+            for(j=i+1;j>=0;j--) { //бежим в обратную сторону влево до начала
+                if(arr[j] < arr[j-1]) { //переставляем элементы так чтобы слева был наименьший               
+                    k = arr[j];        //временное хранилище      
+                    arr[j] = arr[j-1]; //сама перестановка
+                    arr[j-1] = k;     
+                }
+            }
+        }
+    }
+return arr;
+}
