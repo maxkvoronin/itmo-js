@@ -9,12 +9,12 @@
 var arrA = [ 12, 4, 3, 10, 1, 20];  
 var arrB = [-3, -7, -100, -33]; 
 
-//в конец
-arrC = [...arrA, ...arrB];
+//B в конец A
+var arrC = [...arrA, ...arrB];
 //console.log(arrC);
 
-//в начало
-arrC = [...arrB, ...arrA];
+//B в начало A
+var arrC = [...arrB, ...arrA];
 //console.log(arrC);
 
 /** JS 
@@ -27,7 +27,7 @@ arrC = [...arrB, ...arrA];
  
  */
 
-//см. dz4_2.html
+//см. dz4-2.html
 function tictac (arr) {
     var str = '<table>';
     var td = '';
@@ -110,16 +110,16 @@ function deleteMinMax (arr) {
  * и методы разобранные на занятии. Снабдите комментариями каждую строку.
  */
 
-//console.log(sortGnome([12,4,3,10,1,20]));
+console.log(sortGnome([12,4,30,10,1,20]));
 function sortGnome(arr) {
-    var k; //буфер
-    for(i=0;i<arr.length;i++) {  //цикл направление слева направо 
+    var tmp; //временное хранилище  
+    for(var i=0;i<arr.length;i++) {  //цикл направление слева направо 
         if(arr[i]>arr[i+1]) { //если текуций элемент больше следующего
-            for(j=i+1;j>=0;j--) { //бежим в обратную сторону влево до начала
+            for(var j=i+1;j>=0;j--) { //бежим в обратную сторону влево до начала
                 if(arr[j] < arr[j-1]) { //переставляем элементы так чтобы слева был наименьший               
-                    k = arr[j];        //временное хранилище      
+                    tmp = arr[j];      //временное хранилище  
                     arr[j] = arr[j-1]; //сама перестановка
-                    arr[j-1] = k;     
+                    arr[j-1] = tmp;     
                 }
             }
         }
