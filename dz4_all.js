@@ -112,19 +112,6 @@ function deleteMinMax (arr) {
 
 //console.log(sortGnomev2([-12,4,30,-10,-1,-20]));
 
-var start = window.performance.now();
-for (var i = 0; i<1000000; i++) {
-    sortGnomev2([-12,4,30,-10,-1,-20]);
-}
-var end = window.performance.now();
-
-console.log(end - start);
-
-for (var i = 0; i<1000000; i++) {
-    sortGnome([-12,4,30,-10,-1,-20]);
-}
-
-
 //без вложенного цикла
 function sortGnomev2(arr) {
     var tmp = 0; // временное хранилище  
