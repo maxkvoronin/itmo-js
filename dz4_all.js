@@ -76,15 +76,15 @@ function tictac (arr) {
  * Задан массив  - [12,4,3,10,1,20]. 
  * Удалить из него наименьшее и наибольшее значение.
  */
-
-//console.log(deleteMinMax([12,4,3000,-10,11,200,-100]));
+//console.log(deleteMinMax([-12,-4,-3000,-10,-11,-200,-100]));
 function deleteMinMax (arr) {
-    var maxValue = 0;
+    var maxValue = arr[0];
     
     //ищем максимальный элемент
     for (var i=0;i<arr.length;i++) {
         if (arr[i] > maxValue)
-            maxValue = arr[i];        
+            maxValue = arr[i];   
+                 
     }
 
     var minValue = maxValue;
@@ -93,6 +93,7 @@ function deleteMinMax (arr) {
     for (var i=0;i<arr.length;i++) {
         if (arr[i] < minValue)
             minValue = arr[i];        
+           
     }
 
     //удаляем минимальный и максимальный элемент из массива
