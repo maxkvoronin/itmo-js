@@ -12,7 +12,7 @@ var Student = {
     age: 18,
     interests: ["football", "history"],
     placeOfStydy: "SPBGU"
-}
+};
 
 function showObj (obj) {
     console.log(obj);
@@ -125,7 +125,7 @@ function counter () {
             }
         return this.Str;
         }
-    }
+    };
 
     var now = new Date();
     var nextyear = now.getFullYear() + 1;
