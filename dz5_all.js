@@ -6,7 +6,7 @@
 а она выводит его содержимое.
  */
 
-var Student = {
+var student = {
     firstname: "Ivan",
     surname: "Pupkin",
     age: 18,
@@ -16,7 +16,7 @@ var Student = {
 
 function showObj (obj) {
     console.log(obj);
-}(Student);
+}(student);
 
 
 /**
@@ -70,9 +70,7 @@ function fibo(maxstep) {
 5 дней. Функция должна корректно работать при запуске в любом году, 
 т. е. грядущий год должен вычисляться программно.*/
 
-
 //console.log(counter());
-
 
 function counter () {
 
@@ -83,54 +81,30 @@ function counter () {
         hourStr: ["час", "часа", "часов"],
         minut: 0,
         minutStr: ["минута", "минуты", "минут"],
-        Str: "",
+        str: "",
         convertStr: function () {
-
-            if (this.day%100 < 20 && this.day%100 > 10) {
-                this.Str += this.day + " " +  this.dayStr[2] + " ";
-            } else
-            if (this.day%10 === 1) {
-                this.Str += this.day + " " +  this.dayStr[0] + " ";
-            } else
-            if (this.day%10 === 2 || this.minut%10 === 3
-                || this.day%10 === 4) {
-                this.Str += this.day + " " +  this.dayStr[1] + " ";
-            } else {
-                this.Str += this.day + " " +  this.dayStr[2] + " ";
+            return timeToString(this.day, this.dayStr) + 
+                   timeToString(this.hour, this.hourStr) +
+                   timeToString(this.minut, this.minutStr);
+            
+            function timeToString (val, arr) {
+                if (val%100 < 20 && val%100 > 10) {
+                    return `${val} ${arr[2]} `;
+                } else
+                if (val%10 === 1) {
+                    return `${val} ${arr[0]} `;
+                } else 
+                if (val%10 === 2 || val%10 ===3 || val%10 === 4) {
+                    return `${val} ${arr[1]} `;
+                } else
+                    return `${val} ${arr[2]} `;
             }
-
-
-            switch (this.hour) {
-                case 1: case 21:
-                    this.Str += this.hour + " " +  this.hourStr[0] + " ";    
-                    break;
-                case 2: case 3: case 4: case 22: case 23:
-                    this.Str += this.hour + " " +  this.hourStr[1] + " ";    
-                    break;
-                default:
-                    this.Str += this.hour + " " +  this.hourStr[2] + " "; 
-            }        
-
-            if (this.minut < 20 && this.minut > 10) {
-                this.Str += this.minut + " " +  this.minutStr[2];
-            } else
-            if (this.minut%10 === 1) {
-                this.Str += this.minut + " " +  this.minutStr[0];
-            } else
-            if (this.minut%10 === 2 || this.minut%10 === 3
-                || this.minut%10 === 4) {
-                this.Str += this.minut + " " +  this.minutStr[1];
-            } else {
-                this.Str += this.minut + " " +  this.minutStr[2];
-            }
-        return this.Str;
-        },
+        }
     };
 
     var now = new Date();
     var nextyear = now.getFullYear() + 1;
-    var happyNewYear = Date.parse(nextyear+"-01-01T00:00:00");
-    var msForNY = happyNewYear - now.getTime();
+    var msForNY = Date.parse(nextyear+"-01-01T00:00:00") - now.getTime();
     var minsForNY = parseInt(msForNY/60000);
 
     ny.day = parseInt(minsForNY/1440);
@@ -138,7 +112,6 @@ function counter () {
     ny.minut = parseInt(minsForNY%(1440/24));
 
     return ny.convertStr();
-
 }
 
 
