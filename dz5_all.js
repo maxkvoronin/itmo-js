@@ -81,7 +81,6 @@ function counter () {
         hourStr: ["час", "часа", "часов"],
         minut: 0,
         minutStr: ["минута", "минуты", "минут"],
-        str: "",
         convertStr: function () {
             return timeToString(this.day, this.dayStr) + 
                    timeToString(this.hour, this.hourStr) +
