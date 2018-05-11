@@ -53,7 +53,7 @@ function random100 () {
     
     return function inner() {
         var Num;
-        while(arr.length != 100) {
+        while(arr.length !== 100) {
             rNum = Math.floor( Math.random()*100 + 1 );      
             if (arr.indexOf(rNum) === -1) {
                 arr.push(rNum);
