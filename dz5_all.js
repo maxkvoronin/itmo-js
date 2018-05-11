@@ -48,7 +48,7 @@ arrC = arrC.filter( (item, i) => {
 Заданное число передается функции в качестве аргумента. 
  */
 
-//fibo(8);
+//fibo(2);
 
 function fibo(maxstep) {
     var cur = 0, pre = 1, prepre = 0;
@@ -124,7 +124,7 @@ function counter () {
                 this.Str += this.minut + " " +  this.minutStr[2];
             }
         return this.Str;
-        }
+        },
     };
 
     var now = new Date();
