@@ -43,5 +43,5 @@ function ceasar (inputStr, shift) {
     }
 };
 
-var shifr = ceasar("Алексей, меня зовут Ярослав, а тебя?", 1000)
+var shifr = ceasar("Алексей, меня зовут Ярослав, а тебя?", 100)
 console.log(shifr());
