@@ -14,7 +14,7 @@
  * @param {string} inputStr | строка для кодировки
  * @param {number} shift | ключ шифрования (сдвиг) 
  */
-function ceasar (inputStr, shift) {
+function ceasar ([...inputStr], shift) {
     var outputStr='';
 
     return function crypto () {
@@ -25,7 +25,7 @@ function ceasar (inputStr, shift) {
             shift = shift % 32;
         }
 
-        [...inputStr].forEach((currentChr) => {
+        inputStr.forEach((currentChr) => {
             chr = currentChr.charCodeAt(0);
             nwChr = shift + chr; //сдвигаем чаркод
             
