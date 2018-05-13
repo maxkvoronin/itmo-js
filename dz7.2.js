@@ -11,5 +11,5 @@ describe("y", function() {
   it("при X = 0", function() {
     assert( isNaN(y(0)));
   });
-  
+
 });
