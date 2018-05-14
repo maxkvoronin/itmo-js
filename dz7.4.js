@@ -12,7 +12,7 @@
 /** 
  * Функция кодер по шифру Цезаря, возвращиет зашифрованную строку.
  * @param {string} inputStr | строка для кодировки
- * @param {number} shift | ключ шифрования (сдвиг) 
+ * @param {number} shift | ключ шифрования (сдвиг)
  */
 function ceasar ([...inputStr], shift) {
     var outputStr='';
@@ -20,20 +20,18 @@ function ceasar ([...inputStr], shift) {
     return function crypto () {
         var chr;
         var nwChr;
-        
-        if (shift > 31) {
-            shift = shift % 32;
-        }
 
+        shift %= 32;
+    
         inputStr.forEach((currentChr) => {
             chr = currentChr.charCodeAt(0);
             nwChr = shift + chr; //сдвигаем чаркод
             
             if (chr > 1071 && chr < 1104) { //нижний регистр
-                    outputStr+=(String.fromCharCode(nwChr - (nwChr < 1104 ? 0 : 32)));
-            } else
+                outputStr+=(String.fromCharCode(nwChr - (nwChr<1072 ? -32 : nwChr<1104 ? 0 : 32)));
+            } else    
             if (chr > 1039 && chr < 1072) { //верхний регистр
-                    outputStr+=(String.fromCharCode(nwChr - (nwChr < 1072 ? 0 : 32)));
+                outputStr+=(String.fromCharCode(nwChr - (nwChr<1040 ? -32 : nwChr<1072 ? 0 : 32)));
             }
             else
                 outputStr+=currentChr;
@@ -43,5 +41,5 @@ function ceasar ([...inputStr], shift) {
     }
 };
 
-var shifr = ceasar("Алексей, меня зовут Ярослав, а тебя?", 100)
+var shifr = ceasar("Алексей, меня зовут Ярослав, а тебя?", -1233)
 console.log(shifr());
