@@ -7,11 +7,11 @@ describe("y", function() {
   });
 
   it("при X = -1", function() {
-    assert( isFinite(y(-1)));
+    assert( isNaN(y(-1)));
   });
 
   it("при X = 0", function() {
-    assert( isNaN(y(0)));
+    assert( !isFinite(y(0)));
   });
 
 });
