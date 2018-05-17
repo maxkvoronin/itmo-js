@@ -6,6 +6,8 @@
  * Все числа разного размера и цвета.
  */
 
+ //см. dz8.4.html
+
 //максимальный размер шрифта от 0.1px до 100px
 //чтобы не было совсем большых шрифтов
 const maxFontSize = 1000; // 100px.
@@ -65,7 +67,7 @@ var obj = {
             this.arrInitAndSort(this.fontsize, maxFontSize);
         }
 
-        return `${(this.fontsize[this.fontsizeIndex++]+1)/10}px`; 
+        return `${((this.fontsize[this.fontsizeIndex++]+1)/10)+15}px`; 
     }
 
 }; 
