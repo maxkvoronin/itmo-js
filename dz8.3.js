@@ -30,15 +30,15 @@ var timer4 = setInterval(function setSvet1 () {
     elGreen.style.backgroundColor = (elGreen.style.backgroundColor === "white") ? "green" : "white"; 
 }, 5000);
 
-var timer20 = setTimeout(function tick() {
+var timer5 = setTimeout(function tick() {
     elGreen.style.backgroundColor = "white";
 
-    var timer7 = setInterval(function setSvet3 () {
+    var timer6 = setInterval(function setSvet3 () {
         elGreen.style.backgroundColor = "white";    
     }, 10000);
 }, 8000);
 
-var timer21 = setTimeout(function tick1() {
+var timer7 = setTimeout(function tick1() {
     elGreen.style.backgroundColor = "green";
 
     var timer8 = setInterval(function setSvet3 () {
@@ -46,18 +46,18 @@ var timer21 = setTimeout(function tick1() {
     }, 10000); 
 }, 8500);
 
-var timer22 = setTimeout(function tick1() {
+var timer9 = setTimeout(function tick1() {
     elGreen.style.backgroundColor = "white"; 
 
-    var timer9 = setInterval(function setSvet3 () {
+    var timer10 = setInterval(function setSvet3 () {
         elGreen.style.backgroundColor = "white";    
     }, 10000);    
 }, 9000);
 
-var timer23 = setTimeout(function tick1() {
+var timer11 = setTimeout(function tick1() {
     elGreen.style.backgroundColor = "green";  
 
-    var timer10 = setInterval(function setSvet3 () {
+    var timer12 = setInterval(function setSvet3 () {
         elGreen.style.backgroundColor = "green";    
     }, 10000);
 }, 9500);
