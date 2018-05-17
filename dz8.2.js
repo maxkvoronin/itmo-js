@@ -14,17 +14,17 @@
  */
 
  //см dz8.2.html
- 
+
  var product = {
      photourl: "http://economic-definition.com/images/2856010039_480.jpg",
      art: 111,
      name: "Lorem ipsum",
      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-     put:   function () {
-        var elem = document.getElementById("clearElem");
+     put:   function (elemId) {
+        var elem = document.getElementById(elemId);
         elem.style.width = "200px";
         elem.innerHTML = `<strong>${this.name}</strong><img width="100%" src=${this.photourl}><p>${this.art}</p><p>${this.description}</p>`;
      }
  };
 
- product.put();
+ product.put("clearElem");
