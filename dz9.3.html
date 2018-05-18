@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <style>
+
+        .cable{height:100px; width:10px; background-color:#000; margin:0 60%;}
+        .keyboard{
+        width:800px; height: 320px;
+        background-color: #111;
+        margin: 0px auto;
+        border-radius: 9px;
+        padding: 30px;
+        color: #eee;
+        }
+
+        .logo{
+        width:50px; height:50px;
+        background-color:#CCC;
+        color: #222;
+        font-weight:300;
+        font-style: bold;
+        font-size:50px;
+        padding: 10px;
+        text-align:center;
+        margin: -20px auto 10px auto;
+        border-radius:50%;
+        }
+
+
+        .lights{
+        float:right;
+        position:relative;
+        top:-45px;
+        right:8px;
+        padding:0;
+        margni:0;
+        }
+        .lights span{margin:0 20px 0 20px; padding:0; text-align: center;}
+        .lights span:after{
+        content:"";
+        width:11px; height:8px;
+        top: 22px; margin-left:-9px;
+        background-color:#DBB921;
+        position:absolute;
+        border-radius: 3px;
+        }
+
+        .key{
+        width: 40px; height:40px;
+        display:block;
+        background-color: #333;
+        text-align: left;
+        padding-left: 8px;
+        line-height: 29px;
+        border-radius:2px;
+        float:left; margin-left: 2px;
+        margin-bottom:2px;
+        cursor: pointer;
+        transition: box-shadow 0.7s ease;
+        }
+
+        .section-a{width:650px; height:260px; float:left;}
+        .section-b{width:150px; height:260px; float:left;}
+
+        .function{font-size: 12px; width:30px; height:30px; margin-bottom:15px;}
+        .small{font-size:10px; line-height:13px; text-align: center; padding:0 5px; padding-top:2px; height:28px !important;}
+        .space1{margin-right: 43px !important;}
+        .space2{margin-right: 25px !important;}
+        .dual {font-size: 14px; line-height: 20px; width:30px; }
+        .backspace {width:84px; font-size: 12px;}
+        .tab {width: 50px; line-height: 40px; font-size:13px;}
+        .letter{width:30px;}
+        .slash{width:64px;}
+        .caps{width:70px; font-size:12px; line-height:18px;}
+        .enter{width:92px; line-height:40px; text-align: center; padding-left:0;}
+        .shift.left{width: 90px;line-height: 40px; font-size:13px;}
+        .shift.right{width: 104px;line-height: 40px; font-size:13px;}
+        .ctrl{width: 50px; line-height: 40px; font-size:13px;}
+        .space{width:234px;}
+        .arrows{position:relative; top:42px;}
+        .sec-func .key{width: 32px; font-size:10px; text-align:left; line-height:40px; float:left;}
+        .sec-func div.dual{line-height:20px;}
+        .arrows .key{text-align: center; padding-left: 7px; margin-left:2px;}
+        .hidden{visibility: hidden;}
+
+        .key:hover{box-shadow:0px 0px 10px #14B524; z-index:1000;}
+    </style>
+</head>
+<body>
+        <div id="myKeyboard" class="cable">
+            </div>
+            <div class="keyboard">
+              <div id="elScreen" class="logo">
+                
+              </div>
+              
+              <div class="lights">
+                <span>1</span>
+                <span>A</span>
+                <span>V</span>
+              </div>
+              
+              
+              <div class="section-a">
+              <div class="key function space1">
+
+              </div>
+            
+              <div class="key function">
+
+              </div>
+              <div class="key function">
+      
+              </div>
+              <div class="key function">
+
+              </div>
+              
+              <div class="key function space2">
+  
+              </div>
+              <div class="key function">
+  
+              </div>
+              <div class="key function">
+     
+              </div>
+                <div class="key function">
+        
+              </div>
+              <div class="key function space2">
+   
+              </div>
+              
+              <div class="key function">
+  
+              </div>
+              <div class="key function">
+  
+              </div>
+                <div class="key function">
+
+              </div>
+              <div class="key function">
+      
+              </div>
+                <!--END FUNCTION KEYS -->
+                
+              <div class="key num dual">
+      
+              </div>
+                
+              <div class="key num dual">
+           
+              </div>
+              <div class="key num dual">
+           
+              </div>
+              <div class="key num dual">
+       
+              </div>
+              <div class="key num dual">
+              
+              </div>
+              <div class="key num dual">
+ 
+              </div>
+              <div class="key num dual">
+          
+              </div>
+              <div class="key num dual">
+    
+              </div>
+              <div class="key num dual">
+    
+              </div>
+              <div class="key num dual">
+             
+              </div>
+              <div class="key num dual">
+       
+              </div>
+              <div class="key num dual">
+    
+              </div>
+              <div class="key num dual">
+       
+              </div>
+              <div class="key backspace">
+       
+              </div>
+               <!--END NUMBER KEYS -->
+                
+              <div class="key tab">
+     
+              </div>
+              
+              <div class="key letter">
+                Q
+              </div>
+                <div id="keyq" class="key letter">
+                W
+              </div>
+                <div class="key letter">
+                E
+              </div>
+                <div class="key letter">
+                R
+              </div>
+                <div class="key letter">
+                T
+              </div>
+                <div class="key letter">
+                Y
+              </div>
+                <div class="key letter">
+                U
+              </div>
+                <div class="key letter">
+                I
+              </div>
+                <div class="key letter">
+                O
+              </div>
+                <div class="key letter">
+                P
+              </div>
+                <div class="key dual">
+   
+              </div>
+                <div class="key dual">
+          
+              </div>
+                <div class="key letter dual slash">
+   
+              </div>
+              <div class="key caps">
+    
+                </div>
+              <div class="key letter">
+                A
+              </div>
+                <div class="key letter">
+                S
+              </div>
+                <div class="key letter">
+                D
+              </div>
+                <div class="key letter">
+                F
+              </div>
+                <div class="key letter">
+                G
+              </div>
+                <div class="key letter">
+                H
+              </div>
+                <div class="key letter">
+                J
+              </div>
+                <div class="key letter">
+                K
+              </div>
+                <div class="key letter">
+                L
+              </div>
+                <div class="key dual">
+  
+              </div>
+                <div class="key dual">
+              
+              </div>
+                <div class="key enter">
+
+              </div>
+                
+              <div class="key shift left">
+
+              </div>
+              <div class="key letter">
+                Z
+              </div>  
+                <div class="key letter">
+                X
+              </div>
+                <div class="key letter">
+                C
+              </div>
+                <div class="key letter">
+                V
+              </div><div class="key letter">
+                B
+              </div><div class="key letter">
+                N
+              </div><div class="key letter">
+                M
+              </div>
+                <div class="key dual">
+ 
+              </div>
+                <div class="key dual">
+    
+              </div>
+                <div class="key dual">
+      
+              </div>
+                <div class="key shift right">
+
+              </div>
+              <div class="key ctrl">
+  
+              </div>
+                <div class="key">
+              
+              </div>
+                <div class="key">
+     
+              </div>
+                <div class="key space">
+                
+              
+             
+                </div>
+                <div class="key">
+
+              </div>
+                <div class="key">
+  
+              </div>
+                <div class="key">
+               
+              </div>
+                <div class="key ctrl">
+
+              </div>
+              </div><!-- end section-a-->
+              
+              <div class="section-b">
+                <div class="key function small">
+        
+                </div>
+                <div class="key function small">
+             
+                </div>
+                <div class="key function small">
+     
+                </div>
+                
+                <dic class="sec-func">
+                <div class="key">
+           
+                </div>
+                <div class="key">
+                
+                </div>
+                <div class="key dual">
+            
+                </div>
+                <div class="key">
+           
+                </div>
+                <div class="key">
+         
+                </div>
+                  <div class="key dual">
+       
+                </div>
+                  
+                  <div class="arrows">
+                <div class="key hidden">
+                  
+                </div>
+                <div class="key">
+    
+                </div>
+                <div class="key hidden">
+                  
+                </div>
+                <div class="key">
+                
+                </div>
+                <div class="key">
+            
+                </div>
+                  <div class="key">
+        
+                </div>
+                  </div><!-- end arrows -->
+                </div><!-- end sec-func -->
+                
+                
+              </div><!-- end section-b-->
+              
+            </div>
+
+        <script src="dz9.3.js"></script>
+</body>
+</html>
+
