@@ -7,13 +7,24 @@
  *  увеличиваться на единицу.
 */
 
-let count1 = 0;
-let count2 = 0;
+
+function buildCount () {
+    let count = 0;
+        return function inner () { 
+            return `Счетчик: ${++count}`;
+        }
+}
+
+let printToButton1 = buildCount();
+let printToButton2 = buildCount();
+let printToButton3 = buildCount();
 
 elButton1.onclick = (ev) => {
-    ev.target.textContent = `Счетчик: ${++count1}`;
+    ev.target.textContent = printToButton1();
 }
 
 elButton2.onclick = function() {
-    this.textContent = `Счетчик: ${++count2}`;
+    this.textContent = printToButton2();
 }
+
+elButton3.addEventListener("click", function() {this.textContent = printToButton3();});
