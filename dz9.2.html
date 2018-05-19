@@ -6,13 +6,26 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
    <style>
+ 
+    :root {
+        --count: "Счетчик: 0";
+    }
+
+    #elButton4:before {
+        content: var(--count);
+    }
 
     </style>
 </head>
 <body>
+        <p>через стрелочную функцию</p>
         <button id="elButton1">Счетчик: 0</button><br><br>
+        <p>через this</p>
         <button id="elButton2">Счетчик: 0</button><br><br>
+        <p>через регистратор обработчика события</p>
         <button id="elButton3">Счетчик: 0</button><br><br>
+        <p>хардкод через переменные CSS</p>
+        <button id="elButton4"></button><br><br>
         
         <script src="dz9.2.js"></script>
 </body>
