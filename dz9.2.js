@@ -7,8 +7,13 @@
  *  увеличиваться на единицу.
 */
 
-let count = 0;
+let count1 = 0;
+let count2 = 0;
 
-elButton.onclick = (ev) => {
-    ev.target.textContent = `Счетчик: ${++count}`;
+elButton1.onclick = (ev) => {
+    ev.target.textContent = `Счетчик: ${++count1}`;
+}
+
+elButton2.onclick = function() {
+    this.textContent = `Счетчик: ${++count2}`;
 }
