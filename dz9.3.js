@@ -12,23 +12,21 @@ function pressKey (keyCode, toggle) {
     var searchText = String.fromCharCode(keyCode);
     
     for (var i = 0; i < aTags.length; i++) {
-      if (aTags[i].textContent.indexOf(searchText) !==-1) {
+      if (aTags[i].textContent.indexOf(searchText) !==-1 && keyCode!==32) {
         var found = aTags[i];
+        found.style.background = (toggle) ? "red" : "#333";
+        elScreen.textContent = found.textContent;
         break;
-      }
+        }
     }
-    found.style.background = (toggle) ? "red" : "#333";
-    elScreen.textContent = found.textContent;
-
 }
 
-document.onkeydown  = (ev) => { 
+document.onkeydown = (ev) => { 
     pressKey(ev.keyCode, true);
     return false;
 }
 
-document.onkeyup  = (ev) => {
+document.onkeyup = (ev) => {
     pressKey(ev.keyCode, false);
     return false;
 }
-
