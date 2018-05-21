@@ -17,8 +17,6 @@
 
 +(function() {
 
-    let hex = ['A','B','C','D','E','F'];
-
     function dec2bin(number) {
         return decToScale(number, 2);
     }
@@ -52,10 +50,8 @@
             numbs = (numbs - ost) / scale;
             
             if(scale === 16) {
-                for(let i = 10; i <=15 ; i++) {
-                    if (ost === i) 
-                        ost = hex[i-10];
-                }
+                ost = (ost===10) ? 'A' : (ost===11) ? 'B' : (ost===12) ? 'C' : 
+                      (ost===13) ? 'D' : (ost===14) ? 'E' : (ost===15) ? 'F' : ost;
             }
             arr.push(ost);
         }
@@ -67,10 +63,8 @@
 
         numbs.forEach( (numb, i) => {
             if(scale === 16) {
-                for(let j = 10; j <= 15; j++) {
-                    if (numb === hex[j-10]) 
-                        numb = j;
-                }
+                numb = (numb==='A') ? 10 : (numb==='B') ? 11 : (numb==='C') ? 12 : 
+                       (numb==='D') ? 13 : (numb==='E') ? 14 : (numb==='F') ? 15 : numb;
             }
             res += numb * Math.pow(scale, numbs.length - i - 1);    
         });
