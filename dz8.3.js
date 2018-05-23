@@ -61,3 +61,5 @@ var timer11 = setTimeout(function tick() {
         elGreen.style.backgroundColor = "green";    
     }, 10000);
 }, 9500);
+
+setI
