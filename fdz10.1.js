@@ -10,7 +10,7 @@
 - Вернуть количество товара.*/
 
 function Product (pname, price) {
-    this.pname = pname;
+    this.name = pname;
     this.price = price;
 }
 
@@ -20,7 +20,28 @@ function ProductCart () {
     this._totalCartPrice = 0;
    
     this.add = function (newProduct) {
-        this._products.push({name: newProduct.pname, price: newProduct.price});
+        this._products.push(newProduct);
+        this._totalCartProducts++;
+        this._totalCartPrice+=newProduct.price
+    }
+
+    this.getTotalCartPrice = function () {
+        return this._totalCartPrice;
+
+        /* другая реализация если в методе add не будем увеличивать цену таким образом: this._totalCartPrice+=newProduct.price
+        for (let iProduct of this._products) {
+            this._totalCartPrice+=iProduct.price;
+        }
+        return  this._totalCartPrice;
+        */
+    }
+
+    this.getAmountOfProducts = function () {
+        return  this._totalCartProducts;
+
+        /* другая реализация если в методе add не инкримент счетчика товаров делать this._totalCartProducts++;
+        return this._products.length;
+        */
     }
 
     this.getPriceOfProduct = function (productName) {
@@ -29,28 +50,17 @@ function ProductCart () {
                 return iProduct.price;
         }
     }
-
-    this.getTotalCartPrice = function () {
-        for (let iProduct of this._products) {
-            this._totalCartPrice+=iProduct.price;
-        }
-        return  this._totalCartPrice;
-    }
-
-    this.getAmountOfProducts = function () {
-        return  this._totalCartProducts = this._products.length;
-    }
-    
 }
 
-// var product1 = new Product('клавиатура',1000);
-// var product2 = new Product('монитор',5000);
-// var pCart = new ProductCart();
+var product1 = new Product('клавиатура',1000);
+var product2 = new Product('монитор',5000);
 
-// pCart.add(product1);
-// pCart.add(product2);
+var pCart = new ProductCart();
 
-// console.log(pCart._products);
-// console.log(pCart.getPriceOfProduct('монитор'));
-// console.log(pCart.getTotalCartPrice());
-// console.log(pCart.getAmountOfProducts());
+pCart.add(product1);
+pCart.add(product2);
+
+//console.log(pCart._products);
+//console.log(pCart.getPriceOfProduct('монитор'));
+//console.log(pCart.getTotalCartPrice());
+//console.log(pCart.getAmountOfProducts());
