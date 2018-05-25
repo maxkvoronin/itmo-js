@@ -13,9 +13,10 @@ function Human (name, age) {
 	this._name = name;
 	this._age = age;	
 	
-    this.getName = function () {
+	this.getName = function () {
 		return this._name;
 	}
+
 	this.getAge = function () {
 		return this._age;
 	}
@@ -31,8 +32,8 @@ function Teacher (name, age, course) {
 }
 
 function Student (name, age, group) {
-    Human.apply(this, arguments);
-    this.group = group;
+	Human.apply(this, arguments);
+	this.group = group;
 }
 
 function Course (name) {
@@ -54,7 +55,7 @@ function Course (name) {
 	}
 	
 	this.addStudent = function (student) {
-        this._students[this.addId()] = student.getName();
+		this._students[this.addId()] = student.getName();
         
 	}
 	
@@ -65,8 +66,8 @@ function Course (name) {
 	}
 
 	this.deleteStudent = function (student) {
-        this._students = this._students.filter((iStudent) => {
-            return iStudent!==student.getName();
+		this._students = this._students.filter((iStudent) => {
+			return iStudent!==student.getName();
         });
 	}
 	
@@ -80,7 +81,7 @@ function Course (name) {
 
 function Admin (name) {
 	this._name = name;
-    var _currnetFreeGroup = 'лето2018'; //предолагаем что у админа на столе листок с именем группы
+	var _currnetFreeGroup = 'лето2018'; //предолагаем что у админа на столе листок с именем группы
 
 	this.acceptToCourse = function (someBody, someСourse) {
 		if (this.isTeacher(someBody)) {
