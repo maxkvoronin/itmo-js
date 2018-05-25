@@ -11,7 +11,7 @@
 
 function Human (name, age) {
 	this._name = name;
-    this._age = age;	
+	this._age = age;	
 	
     this.getName = function () {
 		return this._name;
@@ -41,7 +41,7 @@ function Course (name) {
 	this._students = [];
 	this._id = 0;
 	    
-    this.addId = function () {
+	this.addId = function () {
 		return this._id++;
 	}
 	
@@ -59,17 +59,15 @@ function Course (name) {
 	}
 	
 	this.deleteTeacher = function (teacher) {
-        this._teachers = this._teachers.filter((iTeacher) => {
-            return iTeacher!==teacher.getName();
-        }
-    )
+		this._teachers = this._teachers.filter((iTeacher) => {
+			return iTeacher!==teacher.getName();
+        });
 	}
 
 	this.deleteStudent = function (student) {
         this._students = this._students.filter((iStudent) => {
             return iStudent!==student.getName();
-        }
-	)
+        });
 	}
 	
 	this.selfAway = function(somebody) {
@@ -77,7 +75,6 @@ function Course (name) {
 			this.deleteTeacher(somebody);
 		else
 			this.deleteStudent(somebody);
-
 	}
 }
 
