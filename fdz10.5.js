@@ -20,20 +20,24 @@ function Human (name, age) {
 	this.getAge = function () {
 		return this._age;
 	}
+}
+
+function Teacher (name, age, course) {
+	Human.apply(this, arguments);
+	this.course = course.getNameOfCourse();
 
 	this.goOutFromCourse = function (course){
         course.selfAway(this);
 	}
 }
 
-function Teacher (name, age, course) {
-	Human.apply(this, arguments);
-	this.course = course.getNameOfCourse();
-}
-
 function Student (name, age, group) {
 	Human.apply(this, arguments);
 	this.group = group;
+
+	this.goOutFromCourse = function (course){
+        course.selfAway(this);
+	}
 }
 
 function Course (name) {
