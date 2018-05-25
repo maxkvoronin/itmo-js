@@ -21,7 +21,7 @@ function Human (name, age) {
 		return this._age;
 	}
 
-	this.goOutFromCource = function (course){
+	this.goOutFromCourse = function (course){
         course.selfAway(this);
 	}
 }
@@ -95,11 +95,11 @@ function Admin (name) {
 		}
 	}
 
-	this.kickFromCource = function (someBody, someСourse) {
+	this.kickFromCourse = function (someBody, someСourse) {
 		someСourse.selfAway(someBody);
 	}
 
-	this.makeNewCource = function (name) {
+	this.makeNewCourse = function (name) {
 		var crs =  new Course(name); 
 		return crs;
 	}
@@ -114,7 +114,7 @@ function Admin (name) {
 
 
 var vitaly = new Admin('Vitaly');
-var noda = vitaly.makeNewCource('NodeJS');
+var noda = vitaly.makeNewCourse('NodeJS');
 
 var sasha = new Teacher('Sasha', 30, noda);
 
@@ -127,5 +127,5 @@ sasha = vitaly.acceptToCourse(sasha, noda);
 nariman = vitaly.acceptToCourse(nariman, noda);
 vasya = vitaly.acceptToCourse(vasya, noda);
 evgen = vitaly.acceptToCourse(evgen, noda);
-evgen.goOutFromCource(noda);
-vitaly.kickFromCource(vasya, noda);
+evgen.goOutFromCourse(noda);
+vitaly.kickFromCourse(vasya, noda);
