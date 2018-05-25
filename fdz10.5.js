@@ -9,180 +9,125 @@
 пример их использования.*/
 
 
-function Cource (name) {
-    this.name = name;
+function Human (name, age) {
+	this._name = name;
+    this._age = age;	
+	
+    this.getName = function () {
+		return this._name;
+	}
+	this.getAge = function () {
+		return this._age;
+	}
 
-    //у каждого учителя свой уникальный айдишник который в массиве teachers соответствует его индексу
-    //если учителя удалить и добавить нового, айдишник будет другой
-    this.teachers = [];
-    this.groups = [];
-    this.lastTeacherId = 0; 
-    this.lastGroupId = 0; 
+	this.goOutFromCource = function (course){
+        course.selfAway(this);
+	}
+}
 
-    /*
-    _deps матрица зависимостей учителей и групп 
-    например: дано три группы 
-        группа2017 , её id 0 (индекс в массиве groups)
-        группа2018 , id: 1
-        группа2019 , id: 2
+function Teacher (name, age, course) {
+	Human.apply(this, arguments);
+	this.course = course.getNameOfCourse();
+}
 
-        дано четыре учителя 
-        сидоров, id 0 
-        петров, id 1
-        матвеев, id 2
-        иванов, id 3 (т.е. в массиве teachers это teachers[3])
+function Student (name, age, group) {
+    Human.apply(this, arguments);
+    this.group = group;
+}
 
-            сидоров обучает группа2018 и группа2017 т.е. [1,0]
-            петров обучает группа2017 т.е. [0]
-            матвеев никого не обучает т.е. []
-            иванов обучает группа2019 и группа2017 т.е. [2,0]
-            
-            матрица зависимостей будет такой = [teacherId[groupId, ...], ...]
-            
-            [[1,0],[0], ,[2,0]]
-        */
-    this._deps = []; 
+function Course (name) {
+	this._name = name;
+	this._teachers = [];
+	this._students = [];
+	this._id = 0;
+	    
+    this.addId = function () {
+		return this._id++;
+	}
+	
+	this.getNameOfCourse = function () {
+		return this._name;
+	}
 
-    this.addTeacher = function (nameOfTeacher) {
-        var newTeacher = new Teacher(nameOfTeacher, this.lastTeacherId++);
-        this.teachers.push(newTeacher.name);
-        return newTeacher;
-    }
-
-    this.removeTeacher = function (nameOfTeacher) {
-        var i = this.teachers.indexOf(nameOfTeacher)
-        if (i !== -1) {
-            //удаляем имя учителя, в массиве teachers останется пустое поле, именно для этого delete использую, но индексация остается прежней
-            delete this.teachers[i]; 
-        }
-        else
-            console.log(`Нет такого учителя: ${nameOfTeacher}`);
-    }
-
-    this.addGroup = function (nameOfGroup) {
-        var newGroup = new Group(nameOfGroup, this.lastGroupId++);
+	this.addTeacher = function (teacher) {
+		this._teachers[this.addId()] = teacher.getName();
+	}
+	
+	this.addStudent = function (student) {
+        this._students[this.addId()] = student.getName();
         
-        if (this.groups.includes(nameOfGroup)) {
-            console.log(`Уже есть такая группа: ${nameOfGroup}`);
+	}
+	
+	this.deleteTeacher = function (teacher) {
+        this._teachers = this._teachers.filter((iTeacher) => {
+            return iTeacher!==teacher.getName();
         }
-        else {
-            this.groups.push(newGroup.name);
-            return newGroup;
-        }
-    }
+    )
+	}
 
-    this.removeGroup = function (nameOfGroup) {
-        var i = this.groups.indexOf(nameOfGroup)
-        if (i !== -1) {
-            delete this.groups[i];
+	this.deleteStudent = function (student) {
+        this._students = this._students.filter((iStudent) => {
+            return iStudent!==student.getName();
         }
-        else {
-            console.log(`Нет такой группы: ${nameOfGroup}`);
-        }
-    }
+	)
+	}
+	
+	this.selfAway = function(somebody) {
+		if (somebody instanceof Teacher) 
+			this.deleteTeacher(somebody);
+		else
+			this.deleteStudent(somebody);
 
-    this.addTeacherToGroup = function (nameOfTeacher, nameOfGroup) {
-        var teacherId =  this.teachers.indexOf(nameOfTeacher);
-        var groupId = this.groups.indexOf(nameOfGroup);
-
-        if (teacherId === -1 || groupId === -1) {
-            console.log(`Нет такого учителя или группы: ${nameOfTeacher} ${nameOfGroup}`); 
-        }
-        else {
-            if (this._deps[teacherId] === undefined) {
-                this._deps[teacherId] = new Array();
-            }
-            this._deps[teacherId].push(groupId);      
-        }         
-    }   
-
-    this.removeTeacherFromGroup = function (nameOfTeacher, nameOfGroup) {
-        var teacherId =  this.teachers.indexOf(nameOfTeacher);
-        var groupId = this.groups.indexOf(nameOfGroup);
-
-        if (teacherId === -1 || groupId === -1) {
-            console.log(`Нет такого учителя или группы: ${nameOfTeacher} ${nameOfGroup}`); 
-        } 
-        else {
-            var i = this._deps[teacherId].indexOf(groupId);
-            if (i === -1) {
-                console.log(`Сейчас ${nameOfTeacher} не обучает группу ${nameOfGroup}`); 
-            } else
-                this._deps[teacherId].splice(i, 1);  
-        }
-    } 
-
-    this.getAllGroupsOfTeacher = function (nameOfTeacher) {
-        var teacherId = this.teachers.indexOf(nameOfTeacher);
-        var out=[];
-        
-        if (teacherId === -1) {
-            console.log(`Нет такого учителя ${nameOfTeacher}`); 
-        } 
-        else {
-            if (this._deps[teacherId] !== undefined) {
-                for (i of this._deps[teacherId]) {
-                    out.push(this.groups[i]);
-                }
-                return out;
-            }
-            else {
-                console.log(`Учитель ${nameOfTeacher} сейчас никого не обучает`); 
-            }
-        }
-    }
-
-    this.getAllTeachersOfGroup = function (nameOfGroup) {
-        var groupId = this.groups.indexOf(nameOfGroup);
-        var out=[];
-
-        for (teacherId in this._deps) {
-            for (i of this._deps[teacherId]) {
-                if (i === groupId) {
-                    out.push(this.teachers[teacherId]);
-                }
-            }            
-        }
-        if (out.length !== 0) {
-            return out;
-        }
-        else {
-            console.log(`Группу ${nameOfGroup} никого не обучает`); 
-        }
-    }
+	}
 }
 
-function Teacher (name, teacherId) {
-    this.name = name;
-    this.teacherId = teacherId;
-}
+function Admin (name) {
+	this._name = name;
+    var _currnetFreeGroup = 'лето2018'; //предолагаем что у админа на столе листок с именем группы
 
-function Group(name, groupId) {
-    this.name = name;
-    this.groupId = groupId;
+	this.acceptToCourse = function (someBody, someСourse) {
+		if (this.isTeacher(someBody)) {
+			someСourse.addTeacher(someBody);
+			return someBody;
+
+		}  else {
+			var nwstud = new Student(someBody._name, someBody._age, _currnetFreeGroup);
+			someСourse.addStudent(nwstud); 
+			return nwstud;   
+		}
+	}
+
+	this.kickFromCource = function (someBody, someСourse) {
+		someСourse.selfAway(someBody);
+	}
+
+	this.makeNewCource = function (name) {
+		var crs =  new Course(name); 
+		return crs;
+	}
+
+	this.isTeacher = function (someBody) {
+		if (someBody instanceof Teacher)
+			return true;
+		else
+			return false;
+	}
 }
 
 
-// var cource = new Cource('C++');
-// cource.addTeacher('иванов');
-// cource.removeTeacher('иванов');
-// cource.addGroup('лето2018');
-// cource.removeGroup('лето2018');
-// cource.addTeacher('петров');
-// cource.addGroup('лето2018');
-// cource.addGroup('зима2018');
-// cource.addGroup('осень2018');
-// cource.addTeacher('сидоров');
-// cource.addTeacher('достоевский');
-// cource.addTeacher('ломоносов');
-// cource.addTeacherToGroup('ломоносов', 'лето2018');
-// cource.addTeacherToGroup('достоевский', 'лето2018');
-// cource.addTeacherToGroup('достоевский', 'зима2018');
-// cource.addTeacherToGroup('достоевский', 'осень2018');
-// cource.addGroup('второгодки2017');
-// cource.addTeacherToGroup('петров', 'осень2018');
-// cource.removeTeacherFromGroup('достоевский', 'зима2018');
+var vitaly = new Admin('Vitaly');
+var noda = vitaly.makeNewCource('NodeJS');
 
-// console.log(cource.getAllGroupsOfTeacher('достоевский'));
-// console.log(cource.getAllTeachersOfGroup('лето2018'));
+var sasha = new Teacher('Sasha', 30, noda);
 
+var nariman = new Human('Nariman', 30);
+var evgen = new Human('Evgeny', 30);
+var vasya = new Human('Vasya', 18);
+
+sasha = vitaly.acceptToCourse(sasha, noda);
+
+nariman = vitaly.acceptToCourse(nariman, noda);
+vasya = vitaly.acceptToCourse(vasya, noda);
+evgen = vitaly.acceptToCourse(evgen, noda);
+evgen.goOutFromCource(noda);
+vitaly.kickFromCource(vasya, noda);
