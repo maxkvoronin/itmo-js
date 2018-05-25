@@ -1,0 +1,66 @@
+<!-- /*3*. Дана таблица. Несколько столбцов и строк. У каждого 
+столбца есть заголовок (например, №, ФИО, возраст). 
+По нажатию на заголовок столбца осуществлять сортировку 
+строк таблицы по значениям этого столбца. По возможности 
+использовать объектно-ориентированное программирование.*/ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        td:first-child , th:first-child {
+            width: 50px;
+            text-align: left;
+        }
+        td, th {
+            width: 300px;
+            text-align: left;
+        }
+
+        th {
+            background: beige;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="clicker">
+            <tr>
+                <th id="num">№</th><th id="prof">Должность</th><th id="fio">ФИО</th>
+            </tr>
+    </table>
+    <table id="myTable">
+        <tr>
+            <td>1</td><td>Председатель Правительства</td><td>Дмитрий Анатольевич Медведев</td>
+        </tr>
+        <tr>
+            <td>2</td><td>Министр финансов</td><td>Антон Германович Силуанов</td>
+        </tr>
+        <tr>    
+            <td>30</td><td>Министр просвещения</td><td>Ольга Юрьевна Васильева</td>
+        </tr>   
+        <tr>
+            <td>4</td><td>Министр транспорта</td><td>Евгений Иванович Дитрих</td>
+        </tr>
+        <tr>
+            <td>5</td><td>Министр иностранных дел</td><td>Сергей Викторович Лавров</td>
+        </tr>
+        <tr>    
+            <td>60</td><td>Министр обороны</td><td>Сергей Кужугетович Шойгу</td>
+        </tr>
+        <tr>    
+            <td>7</td><td>Министр энергетики</td><td>Александр Валентинович Новак</td>
+        </tr>
+        <tr>   
+            <td>8</td><td>Министр внутренних дел</td><td>Владимир Александрович Колокольцев</td>
+        </tr>
+    </table>
+
+    <script src="fdz11.3.js"></script>
+</body>
+</html>
