@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="grid.css">
+    <script src="game.js"></script>
+    
+    <style>
+    body {
+        background:rgb(0, 0, 0);
+    }
+    table {
+        border-spacing: 0;
+    }
+    /* td {
+        transition: 0.5s;
+        transition-timing-function: linear;
+        width: 15px;
+        height: 15px; 
+        border: 0;
+    } */
+        #grid div {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            transition: 0.15s;
+            transition-timing-function:ease-out; 
+            text-align: center;
+            box-shadow: inset 0 0 5px #0f0;
+            border-radius: 10%;
+
+        }
+        #grid {
+            width: 1200px;
+            height: 1200px;
+            font-size: 0;
+            color: white;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        .btns {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="btns">
+            <button id="btn1">make green</button>
+            <button id="btn2">make black</button>
+        </div>
+            <div id="grid">
+            </div>
+    </div>
+
+
+    <script>
+    
+        var pool = new Grid(3600);
+        pool.init();
+        pool.initDOM();
+
+        var divs = grid.getElementsByTagName('div');
+
+        //pool.rand();
+        pool.write();
+        
+
+        // for (var i=0;i<3600;i++) { 
+        //     divs[i].onclick = function() {
+        //         pool.buildBactera(this.textContent);                    
+        //         this.style.background = 'rgb(11, 196, 5)';
+        //     }
+        // }
+
+        var isDown=true; 
+        
+        grid.onmousedown = function(ev) {
+                    ev.target.style.background = 'rgb(11, 196, 5)';
+                    pool.buildBactera(ev.target.textContent);           
+            isDown=true;
+            grid.onmouseover = function(event) {
+                var target = event.target;
+                if(isDown) {
+                    target.style.background = 'rgb(11, 196, 5)';
+                    pool.buildBactera(target.textContent);
+                }
+            };
+        }
+
+        grid.onmouseup = function(ev) {
+            isDown = false;
+        }
+
+
+        btn1.onclick = (ev) => {   
+            setInterval( () => {
+                pool.checkSibling();
+                pool.write();
+            }, 150)
+
+        }
+
+    </script>
+        
+</body>
+</html>
