@@ -1,13 +1,20 @@
-function Grid (size) {
-    this._bacteries = new Array();
-
-    this.initDOM = function (size) {
-        for(let i=0;i<this._bacteries.length; i++) {
-            grid.appendChild(document.createElement('div'));
+function Controller () {
+    this.initDOM = function (size, divid) {
+        for(let i=0;i<size; i++) {
+            divid.appendChild(document.createElement('div'));
         }
     }
 
-    this.init = function () {
+    this.getDivs = function (id) {
+        return id.getElementsByTagName('div');
+    }
+}
+
+
+function Pool (size) {
+    this._bacteries = new Array();
+
+    this.crop = function () {
         for(let i=0;i<size;i++) {
             this._bacteries[i] = new Bacterium(); 
         }
@@ -22,9 +29,7 @@ function Grid (size) {
         }
     }
 
-    this.write = function () {
-        var divs = grid.getElementsByTagName('div');
-
+    this.write = function (divs) {
         for(let i=0;i<this._bacteries.length; i++) {
             if (this._bacteries[i].isLife()) {
                 divs[i].style.background = 'rgb(11, 196, 5)';
@@ -38,10 +43,6 @@ function Grid (size) {
 
     this.getBacteries = function () {
         return this._bacteries;
-    }
-
-    this.setBacteries = function (bacteries) {
-        this._bacteries = bacteries;
     }
 
     this.buildBactera = function (i) {
@@ -79,10 +80,6 @@ function Grid (size) {
                 sublings = [-60,-59,1];
             if (i===3599)
                 sublings = [-61,-60,-59];
-        
-
-
-          //в пустой (мёртвой) клетке, рядом с которой ровно три живые клетки, зарождается жизнь;
            
             var aliveSiblings = 0;
             
@@ -91,6 +88,14 @@ function Grid (size) {
                         if( this._bacteries[k].isLife() )
                         aliveSiblings++; 
                 });
+
+            /**
+             * В пустой (мёртвой) клетке, рядом с которой ровно три живые клетки, зарождается жизнь;
+             * если у живой клетки есть две или три живые соседки, то эта клетка продолжает жить; 
+             * В противном случае, если соседей меньше двух или больше трёх, клетка умирает 
+             * («от одиночества» или «от перенаселённости»)
+             */
+
 
             if(this._bacteries[i].isLife()) {
                 if (aliveSiblings < 2) { 
