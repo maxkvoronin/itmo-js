@@ -4,103 +4,27 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="grid.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">                    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100&effect=neon">
+    <link rel="stylesheet" href="style.css">
     <script src="game.js"></script>
-    
-    <style>
-    body {
-        background:rgb(0, 0, 0);
-    }
-    table {
-        border-spacing: 0;
-    }
-
-        #grid div {
-            width: 20px;
-            height: 20px;
-            display: inline-block;
-            transition: 0.12s;
-            transition-timing-function:ease-out;
-            text-align: center;
-            box-shadow: inset 0 0 5px #0f0;
-        }
-        #grid {
-            width: 1200px;
-            height: 1200px;
-            font-size: 0;
-            color: white;
-            margin-right: auto;
-            margin-left: auto;
-        }
-        .btns {
-            text-align: center;
-            left: 200px;
-            margin: auto;
-        }
-        .container {
-            display: flex;
-        }
-        h1 {
-            color: #0f0;
-        }
-        .txt {
-            color: white;
-            text-align: left;
-            font-size: 1.5em;
-            position: absolute;
-            width: 500px;
-        }
-
-        button {
-            color: white;
-            text-transform: uppercase;
-            background-color: #a2cf8e;
-            border-radius: 20px;
-            border: 0;
-            padding: 12px 18px;
-            text-align: center;
-            overflow: hidden;
-            transition-duration: 0.4s;
-            float: left;
-            font-size: 1.3rem;
-            width: 170px;
-        }
-        button:hover {
-            cursor: pointer;
-            transition-duration: 1s;
-            background:#fff;
-            box-shadow:0 2px 10px 5px #97B1BF;
-            color:#000;
-        }
-
-        button:focus {
-            border: none;
-        }
-
-
-    </style>
 </head>
 <body>
-        <div class="txt">
-                * В пустой (мёртвой) клетке, рядом с которой ровно три живые клетки, зарождается жизнь;
-                  если у живой клетки есть две или три живые соседки, то эта клетка продолжает жить; <br><br>
-                * В противном случае, если соседей меньше двух или больше трёх, клетка умирает 
-                  («от одиночества» или «от перенаселённости»)
-        </div>
+        <div class="lato font-effect-neon">Game of Life</div>
 
         <div class="container">
-
             <div class="btns">
-                    <h1>CONWAY'S GAME OF LIFE</h1>
-
-                <button id="btn1">START</button>
-                <button id="btn2">RAND</button>
-                <button id="btn3">CLEAR</button>
+                <button id="btnStart">START</button>
+                <button id="btnRand">RAND</button>
+                <button id="btnClear">CLEAR</button>        
+            </div>
+            <div class="rng font-effect-neon">
+                <span>Born Time</span>
+                 <input type="range" min="0" max="200" value="100" step="20" id="speed">
             </div>
         </div>
-        <div id="grid">
-        </div>
+       
+        <div id="grid"></div>
 
     <script>
         var game = new Controller();
@@ -113,62 +37,74 @@
         pool.write(cells);
 
 
-        var isDown=true; 
+        var toggleMouse=true; 
         grid.onmousedown = function(ev) {
-                    ev.target.style.background = 'rgb(11, 196, 5)';
+                    ev.target.style.background = '#5aaa36';
                     pool.buildBactera(ev.target.textContent);           
-                    isDown=true;
+                    toggleMouse=true;
             
             grid.onmouseover = function(event) {
                 var target = event.target;
-                if(isDown) {
-                    target.style.background = 'rgb(11, 196, 5)';
+                if(toggleMouse) {
+                    target.style.background = '#5aaa36';
                     pool.buildBactera(target.textContent);
                 }
             };
         }
 
         grid.onmouseup = function(ev) {
-            isDown = false;
+            toggleMouse = false;
         }
 
-        var toggle;
+        var toggleBtnStart;
         var timerId;
-        var timer = 120;
+        var msVal = 100;
         
-        btn1.onclick = (ev) => {  
-            toggle = (btn1.textContent === "START") ? true : false;           
-            if (toggle) {
-                toggle = false;
-                btn1.textContent = "STOP";
+        btnStart.onclick = (ev) => {  
+            toggleBtnStart = (btnStart.textContent === "START") ? true : false;           
+            if (toggleBtnStart) {
+                toggleBtnStart = false;
+                btnStart.textContent = "STOP";
 
                 timerId = setInterval( () => {
                     pool.checkSibling();
                     pool.write(cells);
-                }, timer)
+                }, msVal)
             }
             else {
-                toggle = true;
-                btn1.textContent = "START";
+                toggleBtnStart = true;
+                btnStart.textContent = "START";
                 clearTimeout(timerId);
             }
         }
 
-        btn2.onclick = (ev) => {   
-            btn1.textContent = "START";
+        btnRand.onclick = (ev) => {   
+            btnStart.textContent = "START";
             pool.crop();
             pool.rand();
             pool.write(cells);
             clearTimeout(timerId);
         }
 
-        btn3.onclick = (ev) => {   
-            btn1.textContent = "START";
+        btnClear.onclick = (ev) => {   
+            btnStart.textContent = "START";
             pool.crop();
             pool.write(cells);
             clearTimeout(timerId);
         }
+    
+        speed.onchange = (ev) => {
+            clearTimeout(timerId);
+            msVal = speed.value;
+            
+            var transTime = (msVal>=100) ? speed.value/1000 : 0;
+            document.querySelector(':root').style.setProperty("--speed", `${transTime}s`);
+            
+            timerId = setInterval( () => {
+                    pool.checkSibling();
+                    pool.write(cells);
+                }, msVal)
+        }
     </script>
-        
 </body>
 </html>

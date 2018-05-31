@@ -10,6 +10,19 @@ function Controller () {
     }
 }
 
+function Bacterium () {
+    this._life = false;
+
+    this.born = function() {               
+        this._life = true;      
+    }   
+    this.die = function() {
+        this._life = false; 
+    }
+    this.isLife = function () {
+        return this._life;
+    }
+}
 
 function Pool (size) {
     this._bacteries = new Array();
@@ -32,7 +45,7 @@ function Pool (size) {
     this.write = function (divs) {
         for(let i=0;i<this._bacteries.length; i++) {
             if (this._bacteries[i].isLife()) {
-                divs[i].style.background = 'rgb(11, 196, 5)';
+                divs[i].style.background = '#5aaa36';
             }
             else {
                 divs[i].style.background = 'rgb(0, 0, 0)';
@@ -40,6 +53,7 @@ function Pool (size) {
                 divs[i].textContent = i;
         }
     }
+
 
     this.getBacteries = function () {
         return this._bacteries;
@@ -92,10 +106,11 @@ function Pool (size) {
             /**
              * В пустой (мёртвой) клетке, рядом с которой ровно три живые клетки, зарождается жизнь;
              * если у живой клетки есть две или три живые соседки, то эта клетка продолжает жить; 
-             * В противном случае, если соседей меньше двух или больше трёх, клетка умирает 
+             * в противном случае, если соседей меньше двух или больше трёх, клетка умирает 
              * («от одиночества» или «от перенаселённости»)
+             * 
              */
-
+            //   
 
             if(this._bacteries[i].isLife()) {
                 if (aliveSiblings < 2) { 
@@ -119,19 +134,5 @@ function Pool (size) {
 
         this._bacteries = nwBacteries;
 
-    }
-}
-
-function Bacterium () {
-    this._life = false;
-
-    this.born = function() {               
-        this._life = true;      
-    }   
-    this.die = function() {
-        this._life = false; 
-    }
-    this.isLife = function () {
-        return this._life;
     }
 }
