@@ -48,9 +48,10 @@ function Pool (size) {
                 divs[i].style.background = '#5aaa36';
             }
             else {
-                divs[i].style.background = 'rgb(0, 0, 0)';
+                divs[i].style.background = '#000';
             }
                 divs[i].textContent = i;
+               
         }
     }
 
